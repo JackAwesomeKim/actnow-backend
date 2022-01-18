@@ -1,0 +1,16 @@
+{
+   "name": "acknow-backend",
+   "description": "hello my node-app",
+   "version": "0.0.1",
+   "private": true,
+   "scripts": {
+      "start": "nodemon index.js"
+   },
+   "dependencies": {
+      "express": "3.12.0"
+   },
+   "devDependencies": {
+      "mocha": "^9.1.4",
+      "supertest": "0.13.0"
+   }
+}
