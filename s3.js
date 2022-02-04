@@ -3,6 +3,7 @@ require('dotenv').config()
 const fs = require('fs')
 const S3 = require('aws-sdk/clients/s3')
 
+
 const bucketName = process.env.AWS_BUCKET_NAME
 const region = process.env.AWS_BUCKET_REGION
 const accesskeyId = process.env.AWS_ACCESS_KEY
@@ -36,3 +37,12 @@ function download(file){
     
 }
 
+function getSignedS3Url ({ key, expires }){
+    const signedUrl = s3.getSignedUrl("getObject", {
+      Key: key,
+      Bucket: bucketName,
+      Expires: expires || 900, // S3 default is 900 seconds (15 minutes)
+    });
+    return signedUrl;
+};
+exports.getSignedS3Url = getSignedS3Url
