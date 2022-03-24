@@ -45,4 +45,4 @@ function getSignedS3Url ({ key, expires }){
     });
     return signedUrl;
 };
-exports.getSignedS3Url = getSignedS3Url
+exports.getSignedS3Url = getSignedS3Url 
