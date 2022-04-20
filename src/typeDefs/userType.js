@@ -6,6 +6,7 @@ const typeDefs = gql`
     }
     type Mutation{
         login(userInfo: UserInfo!): User
+        register(userInfo: UserInfo): User
     }
     type User {
         _id: ID!
