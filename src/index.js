@@ -2,10 +2,10 @@ const { ApolloServer, gql } = require("apollo-server-express");
 const { useServer} = require('graphql-ws/lib/use/ws');
 const { makeExecutableSchema} = require('@graphql-tools/schema');
 
-const resolvers = require("./resolvers");
+const resolvers = require("./resolvers/index");
+// const resolvers = require("./resolvers");
 const typeDefs = require("./typeDefs");
 const { createServer } = require('http');
-const validateAuthorization = require('./validateAuthorization');
 const mongoose = require('mongoose');
 const { createApolloServer } = require('./apolloServer');
 
@@ -26,6 +26,7 @@ require('dotenv').config();
   const httpServer = createServer(app);
 
   const schema = makeExecutableSchema({ typeDefs, resolvers });
+  // const schema = makeExecutableSchema({ typeDefs, testResolvers });
   const apolloServer = createApolloServer(schema);
   await apolloServer.start();
   

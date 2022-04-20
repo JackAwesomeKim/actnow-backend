@@ -27,13 +27,7 @@ const PING_SUBSCRIPTION = "PING_SUBSCRIPTION";
 const resolvers = {
     Query: {
         getMessages: async (_, { roomId } ) => await getMessages(roomId),
-        ping: () => {
-            console.log('pubsub');
-            pubsub.publish(PING_SUBSCRIPTION, {
-                pingSent: 'ping sent'
-            });
-            return 'ping sent';
-        },
+        ping: () => 'ping sent',
         getUsers: async () => await User.find(),
         hello: async (parent, { name }) => {
             const messages = await Message.find();

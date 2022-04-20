@@ -1,9 +1,10 @@
-const { gql } = require('apollo-server-express')
+const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
     type Query{
         getMessages(roomId: String!): [MessageWithUserEmail!]
         ping: String
+        pong: String
         hello(name: String): String
         users: [User!]
         getUsers: [User!]
