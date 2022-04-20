@@ -3,8 +3,8 @@ const { useServer} = require('graphql-ws/lib/use/ws');
 const { makeExecutableSchema} = require('@graphql-tools/schema');
 
 const resolvers = require("./resolvers/index");
+const typeDefs = require("./typeDefs/index");
 // const resolvers = require("./resolvers");
-const typeDefs = require("./typeDefs");
 const { createServer } = require('http');
 const mongoose = require('mongoose');
 const { createApolloServer } = require('./apolloServer');
