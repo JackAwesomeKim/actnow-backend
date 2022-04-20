@@ -9,6 +9,7 @@ const Mutation = {
                                     userName: userInfo.userName, 
                                     email: userInfo.email 
                                 });
+                                
         /* if a user doesn't exist, return null */
         if(!user) return null;
         /* if a user exist, issue a token for user */

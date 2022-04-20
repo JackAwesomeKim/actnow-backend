@@ -1,45 +1,19 @@
+
+// This will be used later.
+
 const { merge } = require('webpack-merge');
 
 const common = require('./webpack.common');
 const path = require('path');
 
-module.exports = merge(common, {
+module.exports = merge.smart(common, {
+  devtool: 'inline-source-map',
+  externals: [
+    nodeExternals({
+      whitelist: ['webpack/hot/poll?1000']
+    })
+  ],
+
   // Set the mode to development or production
   mode: 'development',
-
-  // Control how source maps are generated
-  devtool: 'inline-source-map',
-
-  // Spin up a server for quick development
-  devServer: {
-    historyApiFallback: true,
-    open: true,
-    compress: true,
-    hot: true,
-    port: 8080,
-  },
-
-  module: {
-    rules: [
-      // Styles: Inject CSS into the head with source maps
-      {
-        test: /\.(sass|scss|css)$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: { sourceMap: true, importLoaders: 1, modules: false },
-          },
-          { 
-            loader: 'postcss-loader', options: {
-            postcssOptions: {
-                config: path.resolve(__dirname, "./postcss.config.js"),
-              }
-            } 
-          },
-          { loader: 'sass-loader', options: { sourceMap: true } },
-        ],
-      },
-    ],
-  },
 })
