@@ -4,7 +4,6 @@ const { makeExecutableSchema} = require('@graphql-tools/schema');
 
 const resolvers = require("./resolvers/index");
 const typeDefs = require("./typeDefs/index");
-// const resolvers = require("./resolvers");
 const { createServer } = require('http');
 const mongoose = require('mongoose');
 const { createApolloServer } = require('./apolloServer');
@@ -26,7 +25,6 @@ require('dotenv').config();
   const httpServer = createServer(app);
 
   const schema = makeExecutableSchema({ typeDefs, resolvers });
-  // const schema = makeExecutableSchema({ typeDefs, testResolvers });
   const apolloServer = createApolloServer(schema);
   await apolloServer.start();
   

@@ -2,14 +2,15 @@
     "restartable": "rs",
     "ignore": [
       ".git",
-      "node_modules/**/node_modules"
+      "node_modules/**/node_modules",
+      "dist"
     ],
     "verbose": true,
     "execMap": {
       "js": "node --harmony"
     },
     "events": {
-      "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
+      "restart": "webpack --config ./config/webpack.common.js"
     },
     "env": {
       "NODE_ENV": "development"
