@@ -6,4 +6,4 @@ const schema = {
     }
 }
 const Room = mongoose.model('Room', schema);
-module.exports = Room
+module.exports = Room;

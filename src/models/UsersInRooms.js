@@ -10,4 +10,4 @@ const schema = {
     },
 }
 const UsersInRooms = mongoose.model('UsersInRooms', schema);
-module.exports = UsersInRooms
+module.exports = UsersInRooms;

@@ -1,21 +1,20 @@
 const mongoose = require('mongoose');
 const schema = {
-    roomId: {
-        type: String,
-        required: true
-    },
     userId: {
         type: String,
         required: true
     },
-    content: {
+    title: {
         type: String,
         required: true
+    },
+    detail: {
+        type: String
     },
     createdTime: {
         type: Date,
         default: () => new Date(),
     }
 }
-const Message = mongoose.model('Message', schema);
-module.exports = Message;
+const CastingNotice = mongoose.model('CastingNotice', schema);
+module.exports = CastingNotice;
