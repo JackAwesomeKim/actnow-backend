@@ -5,15 +5,23 @@ const typeDefs = gql`
         getNoticeList(managerId:String!): [CastingNotice!]
     }
     type Mutation{
-        login(userInfo: UserInfo!): User
-        register(userInfo: UserInfo): User
+        createNotice(notice: Notice!): Boolean!
     }
     type CastingNotice{
         _id: ID!
-        managerId: String!
         title: String!
+        managerId: String!
         detail: String
     }
-`
+    input Notice{
+        title: String!
+        managerId: String!
+    }
+    type Apply{
+        _id: ID!
+        noticeId: String!
+        applicantId: String!
+    }
+`;
 
-module.exports = typeDefs
+module.exports = typeDefs;

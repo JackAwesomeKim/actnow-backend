@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const schema = {
-    userId: {
+    managerId: {
         type: String,
         required: true
     },

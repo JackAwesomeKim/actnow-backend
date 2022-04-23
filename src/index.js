@@ -23,7 +23,6 @@ require('dotenv').config();
   const express = require('express');
   const app = express();
   const httpServer = createServer(app);
-
   const schema = makeExecutableSchema({ typeDefs, resolvers });
   const apolloServer = createApolloServer(schema);
   await apolloServer.start();

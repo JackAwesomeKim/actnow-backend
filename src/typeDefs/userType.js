@@ -17,6 +17,6 @@ const typeDefs = gql`
         userName: String!
         email: String!
     }
-`
+`;
 
-module.exports = typeDefs
+module.exports = typeDefs;

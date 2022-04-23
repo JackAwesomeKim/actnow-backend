@@ -12,6 +12,10 @@ const schema = {
     userType : {
         type : String,
         required: true
+    },
+    createdTime: {
+        type: Date,
+        default: () => new Date(),
     }
 }
 const User = mongoose.model('User', schema);

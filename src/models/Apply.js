@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 const schema = {
-    roomName: {
+    noticeId: {
+        type: String,
+        required: true,        
+    },
+    applicantId: {
         type: String,
         required: true,
     },
@@ -9,5 +13,6 @@ const schema = {
         default: () => new Date(),
     }
 }
-const Room = mongoose.model('Room', schema);
-module.exports = Room;
+
+const Apply = mongoose.model('Apply', schema);
+module.exports = Apply;

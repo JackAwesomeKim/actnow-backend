@@ -8,6 +8,10 @@ const schema = {
     token : {
         type : String,
         required: true
+    },
+    createdTime: {
+        type: Date,
+        default: () => new Date(),
     }
 }
 const Token = mongoose.model('Token', schema);

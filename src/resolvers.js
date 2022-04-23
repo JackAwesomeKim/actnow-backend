@@ -125,7 +125,7 @@ const resolvers = {
                 simpleMessageAdded: newMessage
             });
             const message = new Message({...newMessage});
-            await message.save();            
+            await message.save();
             return newMessage
         },
         createRoom: async (_, {roomName, userIds}) => {

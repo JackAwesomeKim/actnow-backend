@@ -8,6 +8,10 @@ const schema = {
         type: String,
         required: true
     },
+    createdTime: {
+        type: Date,
+        default: () => new Date(),
+    }
 }
 const UsersInRooms = mongoose.model('UsersInRooms', schema);
 module.exports = UsersInRooms;
