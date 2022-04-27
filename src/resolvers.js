@@ -27,7 +27,9 @@ const PING_SUBSCRIPTION = "PING_SUBSCRIPTION";
 const resolvers = {
     Query: {
         getMessages: async (_, { roomId } ) => await getMessages(roomId),
-        ping: () => 'ping sent',
+        ping: () => {
+            return 'ping sent'
+        },
         getUsers: async () => await User.find(),
         hello: async (parent, { name }) => {
             const messages = await Message.find();
