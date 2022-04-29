@@ -56,6 +56,7 @@ const typeDefs = gql`
         register(userInfo: UserInfo): User!
         login(userInfo: UserInfo!): User
         createRoom(roomName: String!, userIds:[String!]!): String!
+        verifyRefreshToken(userInfo: UserInfo!): Number!
     }
     type Room {
         _id: ID!

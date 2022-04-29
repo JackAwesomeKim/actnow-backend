@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const User = require('@/models/User');
 const Token = require('@/models/Token');
 const { generateId } = require('@/utils');
-
+const { publishNewRefreshToken, publishNewAccessToken } = require('@/functions/api');
 
 const Query = {
     ping: () => 'pong'
@@ -55,9 +55,17 @@ const Mutation = {
         };
         const newUser = new User(_newUser);
         await newUser.save();
-
         return _newUser
     },
+    verifyAccessToken: async (_, { userInfo }, __) => {
+        const token = await publishNewAccessToken(userInfo);
+        console.log(jwt.decode(token));
+        return true;
+    },
+    verifyRefreshToken: async (_, { userInfo }, { req, res, pubsub, setHeaders }) => {
+        const validTimePeriod = await publishNewRefreshToken(userInfo);
+        return validTimePeriod;
+    }
 }
 
 module.exports = { Query, Mutation };

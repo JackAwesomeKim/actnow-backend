@@ -22,3 +22,21 @@ exports.getAge = (dateString) => {
     }
     return age;
 }
+
+
+function representRemainTime(){
+    setTimeout(()=>{
+        console.log(Math.floor(n/60) + ' ' + (n%60));
+        n--;
+        foo();
+    }, 1000)
+
+}
+
+
+
+
+
+
+
+

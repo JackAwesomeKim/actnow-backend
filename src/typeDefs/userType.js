@@ -7,6 +7,8 @@ const typeDefs = gql`
     type Mutation{
         login(userInfo: UserInfo!): User
         register(userInfo: UserInfo): User
+        verifyAccessToken(userInfo: UserInfo!): Boolean
+        verifyRefreshToken(userInfo: UserInfo!): Int!
     }
     type User {
         _id: ID!
