@@ -1,11 +1,15 @@
-const mongoose = require('mongoose');
 const CastingNotice = require('@/models/CastingNotice');
+const getApplicantList = require("@/mongooseDocuments/getApplicantList");
 const Apply = require('../models/Apply');
 
 const Query = {
     getNoticeList: async ( _, { managerId } ) => {
         const castingNotices = await CastingNotice.find({ managerId: managerId });
         return castingNotices;
+    },
+    getApplicantList: async ( _, { noticeId } ) => {
+        const applicantList = await getApplicantList(noticeId);
+        return applicantList;
     },
 };
 
@@ -20,8 +24,10 @@ const Mutation = {
         await apply.save();
         return true;
     },
-
-    
 }
 
-module.exports = { Query, Mutation };
+const ApplicantList = {
+    user: (parent) => parent.user
+};
+
+module.exports = { Query, Mutation, ApplicantList };

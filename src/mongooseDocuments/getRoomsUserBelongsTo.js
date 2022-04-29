@@ -1,7 +1,5 @@
-const User = require('../models/User');
 const UsersInRooms = require('../models/UsersInRooms');
 const getRoomsUserBelongsTo = async (userId) => {
-    console.log(userId);
     return UsersInRooms.aggregate([
         { "$match" : { "userId" : userId }},
         { "$lookup": {

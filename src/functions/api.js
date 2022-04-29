@@ -21,10 +21,7 @@ async function publishNewRefreshToken(userInfo){
 
     await Token.findOneAndUpdate(filter, update, opts);
     return validTimePeriod;
-    
-
 }
-
 
 async function publishNewAccessToken(userInfo){
     const accessToken = await jwt.sign(

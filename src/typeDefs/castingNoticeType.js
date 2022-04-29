@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     type Query{
         getNoticeList(managerId:String!): [CastingNotice!]
+        getApplicantList(noticeId:String!): [ApplicantList!]
     }
     type Mutation{
         createNotice(notice: Notice!): Boolean!
@@ -14,6 +15,11 @@ const typeDefs = gql`
         title: String!
         managerId: String!
         detail: String
+    }
+    type ApplicantList{
+        _id: ID!
+        noticeId: String!
+        user: User
     }
     input Notice{
         title: String!
