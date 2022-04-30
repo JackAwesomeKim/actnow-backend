@@ -1,5 +1,6 @@
 const CastingNotice = require('@/models/CastingNotice');
 const getApplicantList = require("@/mongooseDocuments/getApplicantList");
+const { isNullableType } = require('graphql');
 const Apply = require('../models/Apply');
 
 const Query = {
@@ -8,6 +9,7 @@ const Query = {
         return castingNotices;
     },
     getApplicantList: async ( _, { noticeId } ) => {
+        if(!noticeId) return [];
         const applicantList = await getApplicantList(noticeId);
         return applicantList;
     },
