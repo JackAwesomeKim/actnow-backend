@@ -1,7 +1,19 @@
 const ChatRoom = require('@/models/ChatRoom');
 const Message = require('@/models/Message');
+const User = require('@/models/User');
 const Query = {
-    pong: () => 'ping'
+    pong: () => 'ping',
+    getChatRoomInfo: async ( _, { userInfo, participantId } ) => {
+        const user = await User.findOne({email: userInfo.email});
+        let chatRoom;
+        if(user.userType==="P")
+            chatRoom = await ChatRoom.findOne({ managerId: userInfo._id, applicantId: participantId });
+        else
+            chatRoom = await ChatRoom.findOne({ managerId: participantId, applicantId: userInfo._id });
+        if(!chatRoom) return null;
+        return chatRoom._id;
+    },
+
 };
 
 const Mutation = {
@@ -10,14 +22,14 @@ const Mutation = {
         await chatRoom.save();
         return true;
     },
-    getChatRoomInfo: async ( _, { userInfo, participantId } ) => {
-        let chatRoom = null;
-        if(userInfo.userType==="P")
-            chatRoom = await ChatRoom.findOne({ managerId: userInfo._id, applicantId: participantId });
-        else
-            chatRoom = await ChatRoom.findOne({ managerId: participantId, applicantId: userInfo._id });
-        if(!chatRoom) return null;
-        return chatRoom._id;
-    }
+    addMessage: async ( _, { roomId, userId, content } ) => {
+        const chatRoom = new Message({
+            roomId: roomId,
+            userId: userId,
+            content: content
+         });
+        await chatRoom.save();
+        return true;
+    },
 }
 module.exports = { Query, Mutation };

@@ -20,7 +20,7 @@ const typeDefs = gql`
         _id:String
         userName: String!
         email: String!
-        userType: String!
+        userType: String
     }
 `;
 
