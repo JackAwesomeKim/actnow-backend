@@ -14,10 +14,13 @@ const typeDefs = gql`
         _id: ID!
         userName: String!
         email: String!
+        userType: String!
     }
     input UserInfo {
+        _id:String
         userName: String!
         email: String!
+        userType: String!
     }
 `;
 
