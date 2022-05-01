@@ -7,8 +7,7 @@ const typeDefs = gql`
     }
     type Mutation{
         createNotice(notice: Notice!): Boolean!
-        applyNotice(noticeId: String!, userId:String!): Boolean!
-        
+        applyNotice(noticeId: String!, userId:String!): Boolean!        
     }
     type CastingNotice{
         _id: ID!

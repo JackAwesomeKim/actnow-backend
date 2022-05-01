@@ -6,6 +6,7 @@ const typeDefs = gql`
     }
     type Mutation{
         createRoom(roomName: String!, userIds:[String!]!): String!
+        createChatRoom(managerId:String!,applicantId:String!): Boolean
     }
     type Room {
         _id: ID!

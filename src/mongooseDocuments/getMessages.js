@@ -1,6 +1,4 @@
 const Message = require('../models/Message');
-
-
 const getMessages = async ( roomId ) => {
     return Message.aggregate([
         { "$match" : { "roomId" : roomId }},
