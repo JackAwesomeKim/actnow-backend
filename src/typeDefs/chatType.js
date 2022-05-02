@@ -1,9 +1,11 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+    scalar Date
     type Query{
         pong: String
         getChatRoomInfo(userInfo: UserInfo!, participantId: String!): String
+        getMessages(roomId: String!): [MessageWithUserInfo!]
     }
     type Mutation{
         createRoom(roomName: String!, userIds:[String!]!): String!
@@ -19,6 +21,14 @@ const typeDefs = gql`
         roomId: String!
         userId: String!
         content: String!
+    }
+    type MessageWithUserInfo{
+        _id: ID!
+        roomId: String!
+        userId: String!
+        content: String
+        createdTime: Date!
+        user: User!
     }
 `;
 

@@ -1,6 +1,7 @@
 const ChatRoom = require('@/models/ChatRoom');
 const Message = require('@/models/Message');
 const User = require('@/models/User');
+const getMessages = require('@/mongooseDocuments/getMessages');
 const Query = {
     pong: () => 'ping',
     getChatRoomInfo: async ( _, { userInfo, participantId } ) => {
@@ -13,7 +14,10 @@ const Query = {
         if(!chatRoom) return null;
         return chatRoom._id;
     },
-
+    getMessages: async ( _, { roomId } ) => {
+        const messages = await getMessages(roomId);
+        return messages;
+    },
 };
 
 const Mutation = {
@@ -32,4 +36,9 @@ const Mutation = {
         return true;
     },
 }
-module.exports = { Query, Mutation };
+
+const MessageWithUserInfo = {
+    user: (parent) => parent.user
+};
+
+module.exports = { Query, Mutation, MessageWithUserInfo };
