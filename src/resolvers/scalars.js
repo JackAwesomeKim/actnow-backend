@@ -16,9 +16,5 @@ const dateScalar = new GraphQLScalarType({
     return null; // return with regard to the value of not an integer
   },
 });
-
-
-    
 const date = {Date: dateScalar};
-
 module.exports = { date };

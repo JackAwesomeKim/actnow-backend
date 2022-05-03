@@ -13,6 +13,9 @@ const schema = {
         type : String,
         required: true
     },
+    mainImageUrl: {
+        type : String,
+    },
     createdTime: {
         type: Date,
         default: () => new Date(),
