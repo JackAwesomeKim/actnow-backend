@@ -12,19 +12,14 @@ const Query = {
 
 const Mutation = {
     login: async ( _, { userInfo }, { req, res, pubsub, setHeaders, setCookies } ) => {
-        console.log('cookies');
-        // console.log(req.cookies);
-        // console.log(req.cookie);
-        // console.log(req.headers);
-        // console.log(req.universalCookies);
+
         setCookies.push({
-            name: "cookieName",
+            name: "fromResponse",
             value: "cookieContent",
             options: {
                 path: "/",
             }
         });
-
         const user = await User.findOne({
                                     userName: userInfo.userName, 
                                     email: userInfo.email 

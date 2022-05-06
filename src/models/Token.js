@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const schema = {
     email: {
-        type : String, 
+        type : String,
         required: true,
         unique : true
     },
