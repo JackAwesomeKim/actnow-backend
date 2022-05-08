@@ -1,7 +1,7 @@
 const CastingNotice = require('@/models/CastingNotice');
 const getApplicantList = require("@/mongooseDocuments/getApplicantList");
 const Apply = require('@/models/Apply');
-
+const NoticeProgressInfo = require('@/models/NoticeProgressInfo');
 const Query = {
     getNoticeList: async ( _, { managerId } ) => {
         const castingNotices = await CastingNotice.find({ managerId: managerId });
@@ -23,6 +23,18 @@ const Mutation = {
     applyNotice: async ( _, { noticeId, userId } ) => {
         const apply = new Apply({ noticeId:noticeId, applicantId:userId });
         await apply.save();
+        return true;
+    },
+    createOrModifyNoticeProgressInfo: async ( _, { noticeId, progressOrders, progressOrderNames } ) => {
+        let noticeProgressInfo;
+        for(let i=0; i<progressOrderNames.length; i++){
+            noticeProgressInfo = new NoticeProgressInfo({ 
+                noticeId:noticeId, 
+                progressOrder:progressOrders[i], 
+                progressOrderName:progressOrderNames[i]
+            });
+            await noticeProgressInfo.save();
+        }
         return true;
     },
 }

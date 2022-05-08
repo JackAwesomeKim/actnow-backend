@@ -17,5 +17,5 @@ const schema = {
         default: () => new Date(),
     }
 }
-const CastingNotice = mongoose.model('NoticeProgressInfo', schema);
-module.exports = CastingNotice;
+const NoticeProgressInfo = mongoose.model('NoticeProgressInfo', schema);
+module.exports = NoticeProgressInfo;

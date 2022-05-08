@@ -7,7 +7,8 @@ const typeDefs = gql`
     }
     type Mutation{
         createNotice(notice: Notice!): Boolean!
-        applyNotice(noticeId: String!, userId:String!): Boolean!        
+        applyNotice(noticeId: String!, userId:String!): Boolean!
+        createOrModifyNoticeProgressInfo(noticeId: String!, progressOrders:[Int!]! progressOrderNames: [String!]!): Boolean!
     }
     type CastingNotice{
         _id: ID!
@@ -28,6 +29,12 @@ const typeDefs = gql`
         _id: ID!
         noticeId: String!
         applicantId: String!
+    }
+    type NoticeProgressInfo{
+        _id: ID!
+        noticeId: String!
+        progressOrder: Int!
+        progressOrderName: String!
     }
 `;
 
