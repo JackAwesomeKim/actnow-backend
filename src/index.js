@@ -18,7 +18,12 @@ require('dotenv').config();
 
   const schema = makeExecutableSchema({ typeDefs, resolvers });
   const corsOptions = {
-    origin: 'http://localhost:8080', //for now at least, for testing purposes,
+    origin: [
+      'http://localhost:8080',
+      'https://studio.apollographql.com'
+    ], 
+    
+    //for now at least, for testing purposes,
     credentials: true,
     exposedHeaders: ['Authorization'],
   };

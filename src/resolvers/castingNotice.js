@@ -12,6 +12,10 @@ const Query = {
         const applicantList = await getApplicantList(noticeId);
         return applicantList;
     },
+    getNoticeProgressInfo: async ( _, { noticeId } ) => {
+        const noticeProgressInfo = await NoticeProgressInfo.find({ noticeId: noticeId });
+        return noticeProgressInfo;
+    },
 };
 
 const Mutation = {
