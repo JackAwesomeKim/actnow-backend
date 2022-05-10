@@ -30,6 +30,7 @@ const getNoticeProgressInfo = async ( noticeId ) => {
                     ],
                     "as": "userInfo"
                 }},
+                { $unwind : "$userInfo" }
             ],
             "as": "applicants"
         }},

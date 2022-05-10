@@ -30,6 +30,7 @@ const typeDefs = gql`
         createdTime: Date!
         user: User!
     }
+    
 `;
 
 module.exports = typeDefs;

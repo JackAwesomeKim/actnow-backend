@@ -10,13 +10,6 @@ const getMessages = require('@/mongooseDocuments/getMessages');
 
 const Query = {
     ping: async ( ) => {
-        const result = await getMessagesTest("626ddfbe5e8048460623bf97");
-        const result2 = await getMessages("626ddfbe5e8048460623bf97");
-
-        console.log('**** **** **** **** **** **** ');
-        console.log(result2);
-        // console.log(result[0]);
-        // console.log(result[0].applicants[0]);
         return 'pong';
     }
     
