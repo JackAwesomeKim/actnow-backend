@@ -56,7 +56,6 @@ const resolvers = {
         },
         getRoomsUserBelongsTo: async (_, { userId }, context, info) => {
             const getRooms = await getRoomsUserBelongsTo(userId);
-            console.log(getRooms);
             return getRooms;
         }
     },

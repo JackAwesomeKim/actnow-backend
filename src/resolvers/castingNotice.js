@@ -2,6 +2,8 @@ const CastingNotice = require('@/models/CastingNotice');
 const getApplicantList = require("@/mongooseDocuments/getApplicantList");
 const Apply = require('@/models/Apply');
 const NoticeProgressInfo = require('@/models/NoticeProgressInfo');
+const getNoticeProgressInfo = require('@/mongooseDocuments/getNoticeProgressInfo');
+
 const Query = {
     getNoticeList: async ( _, { managerId } ) => {
         const castingNotices = await CastingNotice.find({ managerId: managerId });
@@ -13,7 +15,7 @@ const Query = {
         return applicantList;
     },
     getNoticeProgressInfo: async ( _, { noticeId } ) => {
-        const noticeProgressInfo = await NoticeProgressInfo.find({ noticeId: noticeId });
+        const noticeProgressInfo = await getNoticeProgressInfo(noticeId);
         return noticeProgressInfo;
     },
 };
@@ -41,10 +43,15 @@ const Mutation = {
         }
         return true;
     },
+    
 }
 
 const ApplicantList = {
     user: (parent) => parent.user
 };
 
-module.exports = { Query, Mutation, ApplicantList };
+const NoticeProgressInfoWithApplicants = {
+    applicants: (parent) => parent.applicants
+};
+
+module.exports = { Query, Mutation, ApplicantList, NoticeProgressInfoWithApplicants };

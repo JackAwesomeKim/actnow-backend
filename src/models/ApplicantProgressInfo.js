@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const schema = {
     noticeId: {
         type: String,
-        required: true,        
+        required: true,
     },
     applicantId: {
         type: String,
         required: true,
     },
-    progressOrder: {
-        type:  Number,
+    progressStage: {
+        type: Number,
         required: true,
     },
     createdTime: {
@@ -18,5 +18,5 @@ const schema = {
     }
 }
 
-const Apply = mongoose.model('Apply', schema);
+const Apply = mongoose.model('ApplicantProgressInfo', schema);
 module.exports = Apply;

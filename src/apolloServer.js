@@ -8,9 +8,6 @@ const createApolloServer = (schema, serverCleanup, httpServer) => {
     return new ApolloServer({
       schema,
       context: ({ req, res, connection }) => {
-        console.log('in the apollo server context');
-        console.log(req.cookies);
-        console.log(req.headers.cookie);
         return {
           req, 
           res, 

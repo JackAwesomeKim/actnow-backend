@@ -4,7 +4,7 @@ const typeDefs = gql`
     type Query{
         getNoticeList(managerId:String!): [CastingNotice!]
         getApplicantList(noticeId:String!): [ApplicantList!]
-        getNoticeProgressInfo(noticeId:String!): [NoticeProgressInfo!]!
+        getNoticeProgressInfo(noticeId:String!): [NoticeProgressInfoWithApplicants!]
     }
     type Mutation{
         createNotice(notice: Notice!): Boolean!
@@ -31,11 +31,12 @@ const typeDefs = gql`
         noticeId: String!
         applicantId: String!
     }
-    type NoticeProgressInfo{
+    type NoticeProgressInfoWithApplicants{
         _id: ID!
         noticeId: String!
         progressOrder: Int!
         progressOrderName: String!
+        applicants: Apply
     }
 `;
 
