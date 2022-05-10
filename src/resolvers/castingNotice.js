@@ -16,6 +16,8 @@ const Query = {
     },
     getNoticeProgressInfo: async ( _, { noticeId } ) => {
         const noticeProgressInfo = await getNoticeProgressInfo(noticeId);
+        console.log('noticeProgressInfo');
+        console.log(noticeProgressInfo);
         return noticeProgressInfo;
     },
 };
@@ -26,8 +28,8 @@ const Mutation = {
         await castingNotice.save();
         return true;
     },
-    applyNotice: async ( _, { noticeId, userId } ) => {
-        const apply = new Apply({ noticeId:noticeId, applicantId:userId });
+    applyNotice: async ( _, { noticeId, userId, progressOrder } ) => {
+        const apply = new Apply({ noticeId:noticeId, applicantId:userId, progressOrder: progressOrder });
         await apply.save();
         return true;
     },
@@ -51,7 +53,24 @@ const ApplicantList = {
 };
 
 const NoticeProgressInfoWithApplicants = {
-    applicants: (parent) => parent.applicants
+    applicants: (parent) => {
+        console.log("****** applicants parent ******");
+        console.log(parent);
+        return parent.applicants
+    }
+    
 };
 
-module.exports = { Query, Mutation, ApplicantList, NoticeProgressInfoWithApplicants };
+const ApplyWithUserInfo = {
+    userInfo: (parent) => {
+        console.log("****** userInfo parent ******");
+        console.log(parent);
+        return parent.userInfo
+    }
+}
+
+module.exports = { 
+    Query, Mutation, 
+    ApplicantList, NoticeProgressInfoWithApplicants,
+    ApplyWithUserInfo
+};

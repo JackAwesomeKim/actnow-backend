@@ -38,7 +38,10 @@ const Mutation = {
 }
 
 const MessageWithUserInfo = {
-    user: (parent) => parent.user
+    user: (parent) => {
+        console.log("**** MessageWithUserInfo ****");
+        return parent.user;
+    }
 };
 
 module.exports = { Query, Mutation, MessageWithUserInfo };

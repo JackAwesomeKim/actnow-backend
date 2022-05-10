@@ -1,7 +1,7 @@
 const NoticeProgressInfo = require('../models/NoticeProgressInfo');
-const getNoticeProgressInfo = async ( noticeId ) => {
+const getMessagesTest = async () => {
     return NoticeProgressInfo.aggregate([
-        { "$match" : { "noticeId" : noticeId }},
+        { "$match" : { "noticeId" : "62638b3b077467d392ba8ab9" }},
         { "$lookup": {
             // "let": { "noticeObjId": { "$toObjectId": "$noticeId" } },
             // "let": { "noticeIdFromFirstTable": "$noticeId" },
@@ -36,4 +36,4 @@ const getNoticeProgressInfo = async ( noticeId ) => {
     ]);
 }
 
-module.exports = getNoticeProgressInfo;
+module.exports = getMessagesTest;
