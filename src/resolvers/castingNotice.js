@@ -43,9 +43,22 @@ const Mutation = {
         }
         return true;
     },
-    updateNoticeProgressInfo: async ( _, { applies } ) => {
-
-        
+    updateNoticeProgressInfo: async ( _, { noticeProgressInfo } ) => {
+        // NoticeProgressInfo
+        let update, filter;
+        const opts = { new: true, upsert: true };
+        for(let i=0; i<noticeProgressInfo.length; i++){
+            filter = { 
+                noticeId:       noticeProgressInfo[i].noticeId, 
+                progressOrder:  noticeProgressInfo[i].progressOrder,
+            };
+            update = { 
+                progressOrder: applies[i].progressOrder, 
+                progressOrderName: applies[i].progressOrderName 
+            };
+            await NoticeProgressInfo.findOneAndUpdate(filter, update, opts);
+        }
+        return true;
     },
     updateApplies: async ( _, { applies } ) => {
         let update, filter;
