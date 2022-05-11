@@ -3,6 +3,7 @@ const getApplicantList = require("@/mongooseDocuments/getApplicantList");
 const Apply = require('@/models/Apply');
 const NoticeProgressInfo = require('@/models/NoticeProgressInfo');
 const getNoticeProgressInfo = require('@/mongooseDocuments/getNoticeProgressInfo');
+const mongoose = require('mongoose');
 
 const Query = {
     getNoticeList: async ( _, { managerId } ) => {
@@ -26,12 +27,18 @@ const Mutation = {
         await castingNotice.save();
         return true;
     },
-    applyNotice: async ( _, { noticeId, userId, progressOrder } ) => {
+    applyNotice: async ( _, { 
+        noticeId, 
+        userId, 
+        progressOrder } ) => {
         const apply = new Apply({ noticeId:noticeId, applicantId:userId, progressOrder: progressOrder });
         await apply.save();
         return true;
     },
-    createOrModifyNoticeProgressInfo: async ( _, { noticeId, progressOrders, progressOrderNames } ) => {
+    createOrModifyNoticeProgressInfo: async ( _, { 
+        noticeId, 
+        progressOrders, 
+        progressOrderNames } ) => {
         let noticeProgressInfo;
         for(let i=0; i<progressOrderNames.length; i++){
             noticeProgressInfo = new NoticeProgressInfo({ 
@@ -49,12 +56,11 @@ const Mutation = {
         const opts = { new: true, upsert: true };
         for(let i=0; i<noticeProgressInfo.length; i++){
             filter = { 
-                noticeId:       noticeProgressInfo[i].noticeId, 
-                progressOrder:  noticeProgressInfo[i].progressOrder,
+                _id :mongoose.Types.ObjectId(noticeProgressInfo[i]._id)
             };
             update = { 
-                progressOrder: applies[i].progressOrder, 
-                progressOrderName: applies[i].progressOrderName 
+                progressOrder: noticeProgressInfo[i].progressOrder, 
+                progressOrderName: noticeProgressInfo[i].progressOrderName 
             };
             await NoticeProgressInfo.findOneAndUpdate(filter, update, opts);
         }
@@ -63,11 +69,9 @@ const Mutation = {
     updateApplies: async ( _, { applies } ) => {
         let update, filter;
         const opts = { new: true, upsert: true };
-
         for(let i=0; i<applies.length; i++){
             filter = { 
-                noticeId:       applies[i].noticeId, 
-                applicantId:    applies[i].userId,
+                _id :mongoose.Types.ObjectId(applies[i]._id)
             };
             update = { progressOrder: applies[i].progressOrder };
             await Apply.findOneAndUpdate(filter, update, opts);

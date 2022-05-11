@@ -32,6 +32,7 @@ const getNoticeProgressInfo = async ( noticeId ) => {
             ],
             "as": "applicants"
         }},
+        { $sort : { "progressOrder" : 1 }}
     ]);
 }
 
