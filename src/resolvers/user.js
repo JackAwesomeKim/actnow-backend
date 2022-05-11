@@ -12,7 +12,6 @@ const Query = {
     ping: async ( ) => {
         return 'pong';
     }
-    
 };
 
 const Mutation = {

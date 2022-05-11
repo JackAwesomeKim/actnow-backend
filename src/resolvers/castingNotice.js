@@ -16,8 +16,6 @@ const Query = {
     },
     getNoticeProgressInfo: async ( _, { noticeId } ) => {
         const noticeProgressInfo = await getNoticeProgressInfo(noticeId);
-        console.log('noticeProgressInfo');
-        console.log(noticeProgressInfo);
         return noticeProgressInfo;
     },
 };
@@ -45,7 +43,24 @@ const Mutation = {
         }
         return true;
     },
-    
+    updateNoticeProgressInfo: async ( _, { applies } ) => {
+
+        
+    },
+    updateApplies: async ( _, { applies } ) => {
+        let update, filter;
+        const opts = { new: true, upsert: true };
+
+        for(let i=0; i<applies.length; i++){
+            filter = { 
+                noticeId:       applies[i].noticeId, 
+                applicantId:    applies[i].userId,
+            };
+            update = { progressOrder: applies[i].progressOrder };
+            await Apply.findOneAndUpdate(filter, update, opts);
+        }
+        return true;
+    },
 }
 
 const ApplicantList = {

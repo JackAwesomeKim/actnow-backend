@@ -3,8 +3,6 @@ const getMessagesTest = async () => {
     return NoticeProgressInfo.aggregate([
         { "$match" : { "noticeId" : "62638b3b077467d392ba8ab9" }},
         { "$lookup": {
-            // "let": { "noticeObjId": { "$toObjectId": "$noticeId" } },
-            // "let": { "noticeIdFromFirstTable": "$noticeId" },
             "let": { 
                 "noticeIdFromFirstTable": "$noticeId",
                 "progressOrderFromFirstTable": "$progressOrder"

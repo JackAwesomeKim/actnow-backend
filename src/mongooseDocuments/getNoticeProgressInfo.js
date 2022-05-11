@@ -3,8 +3,6 @@ const getNoticeProgressInfo = async ( noticeId ) => {
     return NoticeProgressInfo.aggregate([
         { "$match" : { "noticeId" : noticeId }},
         { "$lookup": {
-            // "let": { "noticeObjId": { "$toObjectId": "$noticeId" } },
-            // "let": { "noticeIdFromFirstTable": "$noticeId" },
             "let": { 
                 "noticeIdFromFirstTable": "$noticeId",
                 "progressOrderFromFirstTable": "$progressOrder"

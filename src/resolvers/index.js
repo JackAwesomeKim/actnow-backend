@@ -7,8 +7,4 @@ const resolvers = [
     chat, user, castingNotice, {...date}
 ];
 
-console.log('***** mergeResolvers *****');
-console.log(mergeResolvers(resolvers));
-console.log('***** mergeResolvers *****');
-
 module.exports = mergeResolvers(resolvers);
