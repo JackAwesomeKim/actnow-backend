@@ -1,6 +1,10 @@
 
 const mongoose = require('mongoose');
 const schema = {
+    noticeId: {
+        type: String,
+        required: true,
+    },
     applyId: {
         type: String,
         required: true,

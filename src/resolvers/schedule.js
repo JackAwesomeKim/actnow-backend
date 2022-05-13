@@ -7,9 +7,14 @@ const Query = {
         const schedules = await Schedule.find({ applyId: applyId });
         return schedules;
     },
-    getScheduleWithApply: async (_, { applyId }) => {
-        const getScheduleWithApply = await getScheduleWithApplyDocument(applyId);
-        return true;
+    getScheduleWithApply: async (_, { applyId, selectedDate }) => {
+        const d1 = new Date(selectedDate);
+        var day = 60 * 60 * 24 * 1000;
+
+        // Create new Date instance
+        const d2 = new Date(d1.getTime() + day);
+        const getScheduleWithApply = await getScheduleWithApplyDocument(applyId, d1, d2);
+        return getScheduleWithApply;
     },
 };
 
@@ -25,11 +30,11 @@ const ScheduleWithApply = {
     applyInfo: (parent) => parent.applyInfo
 };
 
-const ApplyInfo = {
+const ApplyInfoInSchedule = {
     userInfo: (parent) => parent.userInfo
 }
 
 module.exports = { 
     Query, Mutation,
-    ScheduleWithApply, ApplyInfo
+    ScheduleWithApply, ApplyInfoInSchedule
 };
