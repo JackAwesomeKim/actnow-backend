@@ -85,20 +85,11 @@ const ApplicantList = {
 };
 
 const NoticeProgressInfoWithApplicants = {
-    applicants: (parent) => {
-        console.log("****** applicants parent ******");
-        console.log(parent);
-        return parent.applicants
-    }
-    
+    applicants: (parent) => parent.applicants    
 };
 
 const ApplyWithUserInfo = {
-    userInfo: (parent) => {
-        console.log("****** userInfo parent ******");
-        console.log(parent);
-        return parent.userInfo
-    }
+    userInfo: (parent) => parent.userInfo
 }
 
 module.exports = { 
