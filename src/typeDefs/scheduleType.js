@@ -1,14 +1,11 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+    type Query{
+        getSchedules(applyId: String!): [Schedule!]
+    }
     type Mutation{
-        createSchedule(
-            applyId:     String!,
-            title:       String!,
-            startTime:   Date!,
-            endTime:     Date!,
-            locationUrl: String!
-        ): Boolean!
+        createSchedule(scheduleInput: ScheduleInput!): Boolean!
     }
     type Schedule{
         _id:         ID!
@@ -18,7 +15,7 @@ const typeDefs = gql`
         locationUrl: String!
     }
     input ScheduleInput{
-        _id:         ID!
+        applyId:     String!
         title:       String!
         startTime:   Date!
         endTime:     Date!

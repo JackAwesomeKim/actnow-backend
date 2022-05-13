@@ -3,19 +3,21 @@ const mongoose = require('mongoose');
 
 const Schedule = require('@/models/Schedule');
 
+const Query = {
+    getSchedules: async (_, { applyId }) => {
+        const schedules = await Schedule.find({ applyId: applyId });
+        return schedules;
+    }
+};
+
 const Mutation = {
     createSchedule: async (_, { scheduleInput }) => {
-//     scheduleInput.applyId:     String!,
-//     scheduleInput.title:       String!,
-//     scheduleInput.startTime:   Date!,
-//     scheduleInput.endTime:     Date!,
-//     scheduleInput.locationUrl: String!
         const schedule = new Schedule(scheduleInput);
         await schedule.save();
         return true;
     }
-}
+};
 
 
 
-module.exports = { Mutation };
+module.exports = { Query, Mutation };
