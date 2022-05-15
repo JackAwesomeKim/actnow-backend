@@ -1,11 +1,10 @@
 const Schedule = require("../models/Schedule");
-const getScheduleWithApplyDocument = async (applyId, d1, d2) => {
+const getScheduleWithApplyDocument = async (noticeId, d1, d2) => {
     return Schedule.aggregate([
-        // { "$match" : { "applyId" : applyId }},
         { "$match": { 
             "$expr": {
                 "$and": [
-                    { "applyId" : applyId },
+                    { "noticeId" : noticeId },
                     { "$lt": [ "$startTime", new Date(d2) ] },
                     { "$gte": [ "$startTime", new Date(d1) ] }
                 ]

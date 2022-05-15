@@ -7,13 +7,14 @@ const Query = {
         const schedules = await Schedule.find({ applyId: applyId });
         return schedules;
     },
-    getScheduleWithApply: async (_, { applyId, selectedDate }) => {
+    getScheduleWithApply: async (_, { noticeId, selectedDate }) => {
+
         const d1 = new Date(selectedDate);
         var day = 60 * 60 * 24 * 1000;
 
         // Create new Date instance
         const d2 = new Date(d1.getTime() + day);
-        const getScheduleWithApply = await getScheduleWithApplyDocument(applyId, d1, d2);
+        const getScheduleWithApply = await getScheduleWithApplyDocument(noticeId, d1, d2);
         return getScheduleWithApply;
     },
 };

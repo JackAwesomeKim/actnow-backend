@@ -13,6 +13,10 @@ const schema = {
         type: String,
         required: true,
     },
+    meetingDate: {
+        type: Date,
+        required: true,
+    },
     startTime: {
         type: Date,
         required: true,
