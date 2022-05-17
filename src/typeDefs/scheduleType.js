@@ -4,12 +4,12 @@ const typeDefs = gql`
     type Query{
         getSchedules(applyId: String!): [Schedule!]
         getScheduleWithApply(noticeId: String!, selectedDate: String!): [ScheduleWithApply!]
-
     }
     type Mutation{
         createSchedule(scheduleInput: ScheduleInput!): Boolean!
         deleteSchedule(noticeId: String!, applyId: String!): Boolean!
         editSchedule(noticeId: String!, applyId: String!): Boolean!
+        
     }
     type Schedule{
         _id:         ID!

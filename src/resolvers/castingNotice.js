@@ -24,6 +24,7 @@ const Query = {
 
 const Mutation = {
     testMutation: async (_, { scheduleInput }) => {
+        console.log(scheduleInput);
         const schedule = new Schedule({...scheduleInput});
         schedule.save();
         return true;
