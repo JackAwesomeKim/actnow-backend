@@ -18,5 +18,5 @@ const schema = {
     }
 }
 
-const Apply = mongoose.model('ApplicantProgressInfo', schema);
-module.exports = Apply;
+const ApplicantProgressInfo = mongoose.model('ApplicantProgressInfo', schema);
+module.exports = ApplicantProgressInfo;

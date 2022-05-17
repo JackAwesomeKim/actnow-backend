@@ -20,6 +20,12 @@ const Query = {
 };
 
 const Mutation = {
+    //add a schedule
+    testMutation: async (_, { scheduleInput }) => {
+        const schedule = new Schedule({...scheduleInput});
+        schedule.save();
+        return true;
+    },
     createSchedule: async (_, { scheduleInput }) => {
         return true;
     },

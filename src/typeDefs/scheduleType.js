@@ -6,6 +6,7 @@ const typeDefs = gql`
         getScheduleWithApply(noticeId: String!, selectedDate: String!): [ScheduleWithApply!]
     }
     type Mutation{
+        testMutation(scheduleInput: ScheduleInput!): Boolean!
         createSchedule(scheduleInput: ScheduleInput!): Boolean!
         deleteSchedule(noticeId: String!, applyId: String!): Boolean!
         editSchedule(noticeId: String!, applyId: String!): Boolean!

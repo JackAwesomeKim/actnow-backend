@@ -7,7 +7,6 @@ const typeDefs = gql`
         getNoticeProgressInfo(noticeId:String): [NoticeProgressInfoWithApplicants!]
     }
     type Mutation{
-        testMutation(scheduleInput: ScheduleInput!): Boolean!
         deleteSchedule(noticeId: String!): Boolean!
         createNotice(notice: Notice!): Boolean!
         applyNotice(noticeId: String!, userId:String! progressOrder: Int!): Boolean!
