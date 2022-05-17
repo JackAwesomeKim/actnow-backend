@@ -4,6 +4,7 @@ const Apply = require('@/models/Apply');
 const NoticeProgressInfo = require('@/models/NoticeProgressInfo');
 const getNoticeProgressInfo = require('@/mongooseDocuments/getNoticeProgressInfo');
 const mongoose = require('mongoose');
+const Schedule = require('../models/Schedule');
 
 const Query = {
     getNoticeList: async ( _, { managerId } ) => {
@@ -22,6 +23,11 @@ const Query = {
 };
 
 const Mutation = {
+    testMutation: async (_, { scheduleInput }) => {
+        const schedule = new Schedule({...scheduleInput});
+        schedule.save();
+        return true;
+    },
     createNotice: async ( _, { notice } ) => {
         const castingNotice = new CastingNotice({...notice});
         await castingNotice.save();

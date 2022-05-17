@@ -21,8 +21,12 @@ const Query = {
 
 const Mutation = {
     createSchedule: async (_, { scheduleInput }) => {
-        const schedule = new Schedule(scheduleInput);
-        await schedule.save();
+        console.log('[backend part] scheduleInput');
+        console.log(scheduleInput);
+
+        // const processedSchedule = JSON.parse(JSON.stringify(scheduleInput));
+        // const schedule = new Schedule(processedSchedule);
+        // await schedule.save();
         return true;
     }
 };
