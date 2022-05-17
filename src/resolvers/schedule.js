@@ -21,12 +21,26 @@ const Query = {
 
 const Mutation = {
     createSchedule: async (_, { scheduleInput }) => {
-        console.log('[backend part] scheduleInput');
-        console.log(scheduleInput);
+        return true;
+    },
+    deleteSchedule: async (_, { noticeId, applyId }) => {
+        console.log('******* deleteSchedule *******');
+        await Schedule.deleteOne(
+            { noticeId: noticeId },
+            { applyId: applyId },
+        );
+        return true;
+    },
+    editSchedule: async (_, { noticeId, applyId, scheduleInput }) => {
+        console.log('******* editSchedule *******');
+        const filter = { 
+            noticeId: noticeId,
+            applyId: applyId,
+        };
+        const opts = { upsert: true };
 
-        // const processedSchedule = JSON.parse(JSON.stringify(scheduleInput));
-        // const schedule = new Schedule(processedSchedule);
-        // await schedule.save();
+        //update refresh token in the mongoDB
+        await Schedule.findOneAndUpdate(filter, {...scheduleInput}, opts);
         return true;
     }
 };
