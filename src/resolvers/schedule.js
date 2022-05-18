@@ -29,16 +29,13 @@ const Mutation = {
     createSchedule: async (_, { scheduleInput }) => {
         return true;
     },
-    deleteSchedule: async (_, { noticeId, applyId }) => {
-        console.log('******* deleteSchedule *******');
+    deleteSchedule: async (_, { scheduleId }) => {
         await Schedule.deleteOne(
-            { noticeId: noticeId },
-            { applyId: applyId },
+            { _id: mongoose.Types.ObjectId(scheduleId) }
         );
         return true;
     },
     editSchedule: async (_, { noticeId, applyId, scheduleInput }) => {
-        console.log('******* editSchedule *******');
         const filter = { 
             noticeId: noticeId,
             applyId: applyId,

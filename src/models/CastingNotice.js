@@ -9,7 +9,8 @@ const schema = {
         required: true
     },
     detail: {
-        type: String
+        type: String,
+        required: true
     },
     createdTime: {
         type: Date,

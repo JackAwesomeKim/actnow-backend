@@ -7,7 +7,6 @@ const typeDefs = gql`
         getNoticeProgressInfo(noticeId:String): [NoticeProgressInfoWithApplicants!]
     }
     type Mutation{
-        deleteSchedule(noticeId: String!): Boolean!
         createNotice(notice: Notice!): Boolean!
         applyNotice(noticeId: String!, userId:String! progressOrder: Int!): Boolean!
         createOrModifyNoticeProgressInfo(noticeId: String!, progressOrders:[Int!]! progressOrderNames: [String!]!): Boolean!
@@ -60,10 +59,11 @@ const typeDefs = gql`
         noticeId: String!
         applicantId: String!
         progressOrder: Int!
+        createdTime: Date!
         userInfo: User
     }
-    
 
+    
 `;
 
 module.exports = typeDefs;

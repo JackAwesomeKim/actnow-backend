@@ -8,7 +8,7 @@ const typeDefs = gql`
     type Mutation{
         testMutation(scheduleInput: ScheduleInput!): Boolean!
         createSchedule(scheduleInput: ScheduleInput!): Boolean!
-        deleteSchedule(noticeId: String!, applyId: String!): Boolean!
+        deleteSchedule(scheduleId: String!): Boolean!
         editSchedule(noticeId: String!, applyId: String!): Boolean!
         
     }
