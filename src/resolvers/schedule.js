@@ -35,11 +35,12 @@ const Mutation = {
         );
         return true;
     },
-    editSchedule: async (_, { noticeId, applyId, scheduleInput }) => {
+    updateSchedule: async (_, { scheduleInput }) => {
+        
         const filter = { 
-            noticeId: noticeId,
-            applyId: applyId,
+            _id: mongoose.Types.ObjectId(scheduleInput._id) 
         };
+        delete scheduleInput._id;
         const opts = { upsert: true };
 
         //update refresh token in the mongoDB

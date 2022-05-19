@@ -9,8 +9,7 @@ const typeDefs = gql`
         testMutation(scheduleInput: ScheduleInput!): Boolean!
         createSchedule(scheduleInput: ScheduleInput!): Boolean!
         deleteSchedule(scheduleId: String!): Boolean!
-        editSchedule(noticeId: String!, applyId: String!): Boolean!
-        
+        updateSchedule(scheduleInput: ScheduleInput!): Boolean!
     }
     type Schedule{
         _id:         ID!
