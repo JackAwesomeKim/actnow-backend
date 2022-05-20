@@ -81,12 +81,6 @@ const Mutation = {
         return true;
     },
     deleteNoticeProgressInfo: async ( _, { noticeProgressInfo } ) => {
-
-        // _id: String!
-        // noticeId: String!
-        // progressOrder: Int!
-        // progressOrderName: String!
-
         await NoticeProgressInfo.deleteOne({ _id: mongoose.Types.ObjectId(noticeProgressInfo._id) });
         await NoticeProgressInfo.updateMany(
             { progressOrder: { $gt: noticeProgressInfo.progressOrder }},
@@ -100,6 +94,12 @@ const Mutation = {
                 { progressOrder: -1 }
             }
         );
+        return true;
+    },
+    addNoticeProgressInfo: async ( _, { noticeProgressInfo } ) => {
+        noticeProgressInfo._id = mongoose.Types.ObjectId();
+        newProgressInfo = new NoticeProgressInfo({...noticeProgressInfo});
+        newProgressInfo.save();
         return true;
     },
 }

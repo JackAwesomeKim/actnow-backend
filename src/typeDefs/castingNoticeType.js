@@ -13,6 +13,7 @@ const typeDefs = gql`
         updateApplies(applies: [ApplyInput!]): Boolean!
         updateNoticeProgressInfo(noticeProgressInfo: [NoticeProgressInfo!]): Boolean!
         deleteNoticeProgressInfo(noticeProgressInfo: NoticeProgressInfo!): Boolean!
+        addNoticeProgressInfo(noticeProgressInfo: NoticeProgressInfo!): Boolean!
     }
     type CastingNotice{
         _id: ID!
