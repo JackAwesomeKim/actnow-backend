@@ -12,6 +12,7 @@ const typeDefs = gql`
         createOrModifyNoticeProgressInfo(noticeId: String!, progressOrders:[Int!]! progressOrderNames: [String!]!): Boolean!
         updateApplies(applies: [ApplyInput!]): Boolean!
         updateNoticeProgressInfo(noticeProgressInfo: [NoticeProgressInfo!]): Boolean!
+        deleteNoticeProgressInfo(noticeProgressInfo: NoticeProgressInfo!): Boolean!
     }
     type CastingNotice{
         _id: ID!
@@ -39,6 +40,7 @@ const typeDefs = gql`
         noticeId: String!
         applicantId: String!
         progressOrder: Int!
+        createdTime: String!
         userInfo: UserInfo!
     }
     type NoticeProgressInfoWithApplicants{

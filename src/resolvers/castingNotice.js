@@ -5,6 +5,7 @@ const NoticeProgressInfo = require('@/models/NoticeProgressInfo');
 const getNoticeProgressInfo = require('@/mongooseDocuments/getNoticeProgressInfo');
 const mongoose = require('mongoose');
 const Schedule = require('../models/Schedule');
+const { findOne } = require('../models/Schedule');
 
 const Query = {
     getNoticeList: async ( _, { managerId } ) => {
@@ -77,6 +78,28 @@ const Mutation = {
             update = { progressOrder: applies[i].progressOrder };
             await Apply.findOneAndUpdate(filter, update, opts);
         }
+        return true;
+    },
+    deleteNoticeProgressInfo: async ( _, { noticeProgressInfo } ) => {
+
+        // _id: String!
+        // noticeId: String!
+        // progressOrder: Int!
+        // progressOrderName: String!
+
+        await NoticeProgressInfo.deleteOne({ _id: mongoose.Types.ObjectId(noticeProgressInfo._id) });
+        await NoticeProgressInfo.updateMany(
+            { progressOrder: { $gt: noticeProgressInfo.progressOrder }},
+            { $inc: 
+                { progressOrder: -1 }
+            }
+        );
+        await Apply.updateMany(
+            { progressOrder: { $gt: noticeProgressInfo.progressOrder }},
+            { $inc: 
+                { progressOrder: -1 }
+            }
+        );
         return true;
     },
 }
