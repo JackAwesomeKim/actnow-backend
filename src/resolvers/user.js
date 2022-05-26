@@ -3,12 +3,15 @@ const mongoose = require('mongoose');
 
 const User = require('@/models/User');
 const Token = require('@/models/Token');
+const { generateId } = require('@/utils');
 const { publishNewRefreshToken, publishNewAccessToken } = require('@/functions/api');
-const PING_SUBSCRIPTION = "PING_SUBSCRIPTION";
-const { pubsub } = require('../apolloServer');
+const getMessagesTest = require('@/mongooseDocuments/mongooseTestDocuments');
+const getMessages = require('@/mongooseDocuments/getMessages');
 
 const Query = {
-
+    ping: async ( ) => {
+        return 'pong';
+    }
 };
 
 const Mutation = {
@@ -18,7 +21,7 @@ const Mutation = {
             name: "fromResponse",
             value: "cookieContent",
             options: {
-                path: "/"
+                path: "/",
             }
         });
         const user = await User.findOne({

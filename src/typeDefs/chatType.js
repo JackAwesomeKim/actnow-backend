@@ -3,7 +3,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     scalar Date
     type Query{
-        pong: String!
+        pong: String
         getChatRoomInfo(userInfo: UserInfo!, participantId: String!): String
         getMessages(roomId: String!): [MessageWithUserInfo!]
     }
@@ -11,9 +11,6 @@ const typeDefs = gql`
         createRoom(roomName: String!, userIds:[String!]!): String!
         createChatRoom(managerId:String!, applicantId:String!): Boolean
         addMessage(roomId:String!, userId:String!, content:String!): Boolean
-    }
-    type Subscription{
-        pingSent: String
     }
     type Room {
         _id: ID!
@@ -33,6 +30,7 @@ const typeDefs = gql`
         createdTime: Date!
         user: User!
     }
+    
 `;
 
 module.exports = typeDefs;
