@@ -2,8 +2,18 @@ const ChatRoom = require('@/models/ChatRoom');
 const Message = require('@/models/Message');
 const User = require('@/models/User');
 const getMessages = require('@/mongooseDocuments/getMessages');
+
+const { PubSub } = require('graphql-subscriptions');
+const pubsub = new PubSub();
+const PING_SUBSCRIPTION = "PING_SUBSCRIPTION";
+
 const Query = {
-    pong: () => 'ping',
+    pong: () => {
+        pubsub.publish(PING_SUBSCRIPTION, {
+            pingSent: 'ping sent'
+        });
+        return 'ping sent';
+    },
     getChatRoomInfo: async ( _, { userInfo, participantId } ) => {
         const user = await User.findOne({email: userInfo.email});
         let chatRoom;
@@ -37,8 +47,14 @@ const Mutation = {
     },
 }
 
+const Subscription = {
+    pingSent: {
+        subscribe: () => pubsub.asyncIterator(PING_SUBSCRIPTION),
+    },
+}
+
 const MessageWithUserInfo = {
     user: (parent) => parent.user
 };
 
-module.exports = { Query, Mutation, MessageWithUserInfo };
+module.exports = { Query, Mutation, Subscription, MessageWithUserInfo };
